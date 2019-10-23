@@ -20,29 +20,36 @@
   <p id="resulte"></p>
 
   <script>
+
     function myFunction() {
-      //get all form values
+
+      //get the form
       var form = document.getElementById("myForm");
-      var string = form.string.value;
-      var separator = form.separator.value;
-      var direction = form.direction.value;
-      
+
+      // this is object destructing
+      var {string, separator, direction} = form;
+      // we can do this instead:
+      // var string = form.string;
+      // var separator = form.separator;
+      // var direction = form.direction;
+     
        //get the index of the sepertor
-      var index = string.indexOf(separator)
+      var index = string.value.indexOf(separator.value)
       
       //delete the separator from the string
-      var newString = string.replace(separator, '')
+      var newString = string.value.replace(separator.value, '')
 
       // substring
       var substr;
 
        // refer to substring documentation to know how this works:
-      if(direction === "after"){
+      if(direction.value === "after"){
         substr = newString.substring(index)
-      }else if(direction === "before"){
+      }else if(direction.value === "before"){
         substr = newString.substring(index, -1)
       }else{
-        // in case no radio button is checked, we could make one of the radios checked instead
+        // this is in case no radio button is checked.
+        // but we could make one of the radios checked by default instead
         substr = '<span style="background:red;">Somthing went wrong. Please select after or before<span>'
       }
       
