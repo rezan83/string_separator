@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Document</title>
+</head>
+<body>
+  
+  <h3>String seperator</h3>
+
+  <form id="myForm" action="">
+    String: <input type="text" name="string" value="fffhggg" required=""><br>
+    Separator: <input type="text" name="separator" value="h" required><br>
+    after: <input type="radio" name="direction" value="after" required ><br>
+    before: <input type="radio" name="direction" value="before" required><br>
+  </form>
+
+  <button onclick="myFunction()">resulte</button>
+
+  <p id="resulte"></p>
+
+  <script>
+    function myFunction() {
+      //get all form values
+      var form = document.getElementById("myForm");
+      var string = form.string.value;
+      var separator = form.separator.value;
+      var direction = form.direction.value;
+      
+       //get the index of the sepertor
+      var index = string.indexOf(separator)
+      
+      //delete the separator from the string
+      var newString = string.replace(separator, '')
+
+      // substring
+      var substr;
+
+       // refer to substring documentation to know how this works:
+      if(direction === "after"){
+        substr = newString.substring(index)
+      }else if(direction === "before"){
+        substr = newString.substring(index, -1)
+      }else{
+        // in case no radio button is checked, we could make one of the radios checked instead
+        substr = '<span style="background:red;">Somthing went wrong. Please select after or before<span>'
+      }
+      
+      document.getElementById("resulte").innerHTML = substr;
+    }
+  </script>
+</body>
+</html>
